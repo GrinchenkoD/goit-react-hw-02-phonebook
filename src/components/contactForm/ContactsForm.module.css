@@ -1,0 +1,37 @@
+
+
+.input{
+    display: block;
+    height: 25px;
+    width: 90%;
+    font-size: 20px;
+    margin: 10px 0px;
+    padding: 5px 10px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    outline: none;
+
+}
+.input:focus{
+    border: 2px solid cornflowerblue;
+}
+
+.input::placeholder{
+    font-size: 16px;
+}
+.label{
+    font-size: 20px;
+}
+
+.submitBtn{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    padding: 8px 15px;
+    margin-top: 10px;
+    border-radius: 4px;
+    outline: none; 
+    cursor: pointer;
+   
+}

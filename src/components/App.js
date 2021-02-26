@@ -1,12 +1,12 @@
-import './App.css';
 import { Component } from "react";
 import { v4 as uuidv4 } from 'uuid';
+
 import Filter from './filter';
-import ContactsForm from './contactsForm';
+import ContactsForm from './contactForm';
+import ContactList from './contactList/ContactList';
+import styles from "./App.module.css"
 
 const initialState= {
-  name: '',
-  number: '',
   filter: ''
   }
 
@@ -50,28 +50,16 @@ class App extends Component {
     const { filter}=this.state
 
     return (
-      <div className="App">
-        <h1>Phonebook</h1>
-
+      <div className={styles.container}>
+        <h1 className={styles.mainTitle}>Phonebook</h1>
         <ContactsForm addContact={this.addContact }/>
-
-
-        <h2>Contacts</h2>
+        <h2 className={styles.title}>Contacts</h2>
         <Filter filter={filter} handleFilter={this.handleFilter} />
-
-        <ul>
-          {this.state.contacts.filter(contact=>contact.name.toLowerCase().includes(filter.toLowerCase())).map((contact) => {
-            return (
-              <li key={contact.id} >
-                <p>{contact.name}</p>
-                <p>{contact.number}</p>
-                <button type='button' data-id={contact.id} onClick={this.handleRemove}>Delete</button>
-              </li>
-          )})}
-        </ul>
-
-
-      </div>
+        {this.state.contacts.length>0 ? (
+          <ContactList contacts={this.state.contacts} handleRemove={this.handleRemove} filter={filter} />
+        ) : ( <h3 className={styles.noContacts}>There are no added contacts yet</h3>)
+        }
+        </div>
       
     );
   }}
